@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebAPI.Data;
 
 namespace WebAPI.Controllers
 {
@@ -11,10 +12,16 @@ namespace WebAPI.Controllers
     [ApiController]
     public class CityController : ControllerBase
     {
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly DataContext dc;
+        public CityController(DataContext dc)
         {
-            return new string[] { "Atlanta", "New York" };
+            this.dc = dc;
+        }
+        [HttpGet]
+        public IActionResult GetCities()
+        {
+            var cities = dc.Cities.ToList();
+            return Ok(cities);
         }
     }
 }
