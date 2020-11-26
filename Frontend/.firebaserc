@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "hspa-angular-project"
+  },
+  "targets": {
+    "hspa-angular-project": {
+      "hosting": {
+        "Housing-Project": [
+          "hspa-angular-project"
+        ]
+      }
+    }
+  }
+}
