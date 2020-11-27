@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebAPI.Models;
+using WebAPI.Interfaces;
 
-namespace WebAPI.Data.Repo
+namespace WebAPI.Interfaces.repo
 {
     public class CityRepository : ICityRepository
     {
@@ -31,9 +32,6 @@ namespace WebAPI.Data.Repo
             return await dc.Cities.ToListAsync();
         }
 
-        public async Task<bool> SaveAsync()
-        {
-            return await dc.SaveChangesAsync() > 0;
-        }
+       
     }
 }
