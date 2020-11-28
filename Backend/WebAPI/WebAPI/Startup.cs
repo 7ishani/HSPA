@@ -12,7 +12,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebAPI.Data;
 using WebAPI.Interfaces;
-using WebAPI.Interfaces.Repo;
 
 namespace WebAPI
 {
