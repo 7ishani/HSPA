@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebAPI.Models;
 
-namespace WebAPI.Data
+namespace WebAPI.Interfaces
 {
     public class DataContext: DbContext
     {
