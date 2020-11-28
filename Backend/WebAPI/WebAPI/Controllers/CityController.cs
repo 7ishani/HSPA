@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -76,6 +77,32 @@ namespace WebAPI.Controllers
             return StatusCode(201);
         }
 
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> UpdateCity(int id,CityDto cityDto)
+        {
+            var cityFromDb = await uow.CityRepository.FindCity(id);
+            cityFromDb.LastUpdateBy = 1;
+            cityFromDb.LastUpdateOn = DateTime.Now;
+            mapper.Map(cityDto, cityFromDb);
+            await uow.SaveAsync();
+            return StatusCode(200);
+        }
+
+        [HttpPatch("update/{id}")]
+        public async Task<IActionResult> UpdateCityPatch(int id,JsonPatchDocument<City> cityToPatch)
+        {
+            var cityFromDb = await uow.CityRepository.FindCity(id);
+            cityFromDb.LastUpdateBy = 1;
+            cityFromDb.LastUpdateOn = DateTime.Now;
+
+            cityToPatch.ApplyTo(cityFromDb, ModelState);
+            await uow.SaveAsync();
+            return StatusCode(200);
+
+            //[
+            //     { "op": "replace", "path": "/Name", "value": "Colombo"}
+            //]
+        }
 
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> DeleteCity(int id)

@@ -11,6 +11,8 @@ namespace WebAPI.Models
 
         public string name { get; set; }
 
+        public string Country { get; set; }
+
         public DateTime LastUpdateOn { get; set; }
 
        public int LastUpdateBy { get; set; }
